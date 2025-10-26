@@ -1,21 +1,63 @@
+# DevOps Simulator Configuration (Merged)
+
 application:
   name: DevOpsSimulator
-  version: 1.0.0
+  version: 3.0.0-experimental
   environment: production
-  
+  experimental_mode: false
+
 server:
   host: 0.0.0.0
   port: 8080
   ssl_enabled: true
-  
+  multi_port: [8080, 3000, 9000, 9001, 9002]
+
 logging:
   level: INFO
   format: json
-  
-# Development configuration (enabled via environment variable)
+  output: /var/log/devops.log
+  ai_analysis: disabled
+
+# Development configuration
 development:
-  enabled: false
+  enabled: true
   port: 3000
-  hot_reload: false
-  debug_mode: false
-  mock_apis: false
+  hot_reload: true
+  debug_mode: true
+  mock_apis: true
+
+# Experimental configuration
+experimental:
+  enabled: true
+  environment: testing
+  server_port: 9000
+  ssl_enabled: true
+  logging:
+    level: TRACE
+    format: structured
+    output: /var/log/experimental.log
+    ai_analysis: enabled
+  database:
+    host: cluster.example.com
+    port: 5432
+    name: devops_experimental
+    distributed: true
+  features:
+    auto_scaling: advanced
+    load_balancer: ai-optimized
+    backup_enabled: true
+    chaos_engineering: enabled
+  ai_features:
+    predictive_scaling: true
+    anomaly_detection: true
+    auto_optimization: true
+    model_version: "v2.1.0"
+  cloud_providers:
+    - aws
+    - azure
+    - gcp
+    - digitalocean
+  security:
+    zero_trust: enabled
+    encryption: AES-256
+    audit_logging: comprehensive
